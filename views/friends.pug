@@ -1,0 +1,39 @@
+extends layout
+
+block content
+	center
+		.container_feed
+				for _user in users
+					if user.email != _user.email
+						.user_element
+							.row
+								.col-xs-2
+									if _user.profile.picture
+										img(src=_user.profile.picture style=('width:80%'))
+										| &#x9;&#x9;&#x9;&#x9;
+									else
+										img(src='/image/avatar.png' style=('width:80%'))
+										| &#x9;&#x9;&#x9;&#x9;
+								.col-xs-10
+									.user_name
+										h4 #{_user.profile.name}
+										| &#x9;&#x9;&#x9;&#x9;&#x9;
+									.user_email
+										h5 #{_user.email}
+										| &#x9;&#x9;&#x9;
+							.row.control_user
+								.col-xs-2
+									img(src='./image/follow.png')
+									|  40
+									| &#x9;&#x9;&#x9;&#x9;
+								.col-xs-2
+									img(src='./image/repost.png')
+									|  2
+									| &#x9;&#x9;&#x9;&#x9;
+								.col-xs-3
+									img(src='./image/btn_more.png')
+									| &#x9;&#x9;&#x9;&#x9;
+								.col-xs-5(align='right')
+									img(src='./image/btn_follow.png')
+									| &#x9;&#x9;&#x9;&#x9;&#x9;
+									img(src='./image/btn_unfollow.png')

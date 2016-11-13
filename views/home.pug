@@ -1,0 +1,95 @@
+extends layout
+
+block content
+	center
+		.container_feed
+			if user
+				.feed_element.feed_post
+					.row
+						.col-xs-2
+							if user.profile.picture
+								img(src=user.profile.picture style=('width:80%'))
+								| &#x9;&#x9;&#x9;&#x9;
+							else
+								img(src='/image/avatar.png' style=('width:80%'))
+								| &#x9;&#x9;&#x9;&#x9;
+						.col-xs-10
+							form.form-horizontal.post_feed_form(method='POST')
+								input(type='hidden', name='_csrf', value=_csrf)
+								input(type='hidden', name='userId', value=user.id)
+								input(type='hidden', name='userName', value=user.profile.name)
+								input(type='hidden', name='email', value=user.email)
+								input(type='hidden', name='userImage', value=user.profile.picture)
+								input(type='hidden', name='feedImage', value=uploaded_file)
+								.form-group
+									.span.pull-right
+										button.btn.btn-success(type='submit')
+											i.fa.fa-pencil
+											| Post Feed
+								.form-group
+									textarea(placeholder="What's on your mind?", name="feed_text")#comment.form-control(rows='5', required)
+							form.form-horizontal(role='form', enctype='multipart/form-data', method='POST', action='/api/upload_feed_img')
+								input(type='hidden', name='_csrf', value=_csrf)
+								.form-group
+									.pull-right
+										img(src=uploaded_file, width='100', height='100', style='display:none')
+										input(type='file', name='myFile', style='display:inline-block')
+										button.btn.btn-warning(type='submit', style='display:inline-block')
+											i.fa.fa-camera-retro
+											| Upload Photo
+
+			if timeline
+				for feed in timeline
+					.feed_element
+						.row
+							.col-xs-2
+								if user.profile.picture
+									img(src=user.profile.picture style=('width:80%'))
+									| &#x9;&#x9;&#x9;&#x9;
+								else
+									img(src='/image/avatar.png' style=('width:80%'))
+									| &#x9;&#x9;&#x9;&#x9;
+							.col-xs-10
+								.feed_title
+									b #{feed.username}
+									//
+										|  	#{feed.email} 
+									.span.pull-right
+										|	#{feed.time}
+										| &#x9;&#x9;&#x9;&#x9;&#x9;
+								.feed_description
+									| #{feed.message}
+									| &#x9;&#x9;&#x9;
+							if feed.feedImage
+								.row
+									.col-xs-10.col-xs-offset-2
+										img(src=feed.feedImage, width='100%')
+										| &#x9;&#x9;&#x9;
+						.row.control_feed
+							.col-xs-2.btn_follow
+								img(src='./image/follow.png')
+								|  40
+								| &#x9;&#x9;&#x9;&#x9;
+							.col-xs-2.btn_repost
+								img(src='./image/repost.png')
+								|  2
+								| &#x9;&#x9;&#x9;&#x9;
+							.col-xs-6
+								img(src='./image/btn_more.png')
+								| &#x9;&#x9;&#x9;&#x9;
+							.col-xs-2(style='justify-content:flex-end')
+								img(src='./image/btn_reply.png')
+				else
+					center
+						br
+						|	oh,sorry, no feeds!
+						br
+						br
+			else
+				center
+					br
+					|	oh,sorry, no feeds!
+					br
+					br
+
+			

@@ -1,0 +1,60 @@
+body{
+	background-color:#f4f4f4;
+}
+.container_feed{
+	width: 700px;
+	max-width: 100%;
+	margin-top: 50px;
+	background-color: #fff;	
+	text-align: left;
+}
+.feed_element{
+	padding: 25px;
+	border-bottom: 0.5px solid #DDD;
+}
+.control_feed > div{
+	height: 50px;
+	display: flex;
+	align-items:center;
+	margin-top: 25px;
+}
+.feed_description{
+	margin: 10px 0px;
+}
+.btn_follow img{
+	width: 100%;
+}
+.btn_repost img{
+	width: 100%;
+}
+.btn_more img{
+	width: 100%;	
+}
+.feed_post{
+	margin-top: 25px;
+	border-top: 0.5px solid #DDD;
+	padding-bottom: 0px;
+}
+.form-horizontal .form-group{
+	margin-left:0px;
+}
+
+/******************/
+/* Users List     */
+/******************/
+
+.user_element{
+	padding: 25px;
+	border-bottom: 0.5px solid #DDD;
+}
+.control_user{
+	display: flex;
+	align-items:center;
+	margin-top: 5px;
+}
+.user_email{
+	margin-top: 10px;
+}
+.user_name{
+
+}
